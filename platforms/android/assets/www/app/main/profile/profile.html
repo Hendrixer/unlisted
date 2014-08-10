@@ -1,0 +1,38 @@
+<ion-view title="Profile">
+
+  <!-- TODO: put these in an abstract parent state -->
+  <ion-nav-bar class="bar-stable">
+    <!-- <ion-nav-back-button>back</ion-nav-back-button> -->
+    <ion-nav-buttons side="left">
+      <button class="hamburger button icon ion-navicon-round" ng-click="root.navHamburger()">
+      </button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content
+    on-swipe-right="root.toggleLeft('right')" on-swipe-left="root.toggleLeft('left')">
+    <material-sidenav
+      class="material-sidenav-left material-whiteframe-z2"
+      component-id="left">
+
+      <section class="nav-hero">
+        <div class="row">
+          <img class="col col-25 nav-pic" src="http://photos-f.ak.instagram.com/hphotos-ak-xfa1/10549606_332428306919949_666741532_n.jpg" alt="">
+        </div>
+      </section>
+
+      <ion-list>
+        <ion-item ng-repeat="link in root.navigationLinks">
+          {{ link }}
+        </ion-item>
+      </ion-list>
+
+    </material-sidenav>
+
+    <div ng-if="root.navOpen" class="nav-overlay fx-fade-overlay fx-speed-300"></div>
+    <section>
+    </section>
+  </ion-content>
+
+
+</ion-view>

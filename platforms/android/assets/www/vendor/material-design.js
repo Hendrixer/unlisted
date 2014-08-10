@@ -303,6 +303,7 @@ function MaterialRippleDirective($materialEffects, $interpolate, $throttle) {
        */
       function localToCanvas(e)
       {
+        console.log('local canvas', e);
         var canvas = element[0].getBoundingClientRect();
 
         return  {
@@ -1672,6 +1673,7 @@ function materialSidenavController($scope, $element, $attrs, $timeout,
 
     $scope.$apply(function() {
       self.close();
+      $scope.$emit('nav:close');
       onClose();
     });
   };

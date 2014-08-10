@@ -3,62 +3,66 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngMaterial'])
+angular.module('unlisted', [
+  'ionic',
+  'ngMaterial',
+  'unlisted.main',
+  'ngFx',
+  'unlisted.directives'
+
+])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('home', {
-      url: '/home',
-      templateUrl: 'home.html'
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'app/app.html'
     });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/app/main/feed');
 })
 
 .controller('RootController', function($scope, $timeout, $materialSidenav) {
+  $scope.nav = {};
   var leftNav;
   $timeout(function() {
-    leftNav = $materialSidenav('left');
-  }, 1000);
+    leftNav = $materialSidenav($scope.nav.id);
+  }.bind(this), 1000);
 
   this.navOpen = false;
-  this.toggleLeft = function() {
+  this.toggleLeft = function(swipe) {
+    if (swipe === 'right' && !this.navOpen) {
+      leftNav.toggle();
+      return this.navOpen = true;
+    }
+
+    if (swipe === 'left' && this.navOpen) {
+      leftNav.toggle();
+      this.navOpen = false;
+    }
+  };
+
+  this.theme = {
+
+  };
+
+  this.navHamburger = function() {
     leftNav.toggle();
     this.navOpen = !this.navOpen;
   };
 
-  this.checkOpenThenClose = function() {
-    if (this.navOpen) {
-      this.toggleLeft();
-    }
-  };
-})
+  this.navigationLinks = [
+    'Profile',
+    'Claimed',
+    'Feed',
+    'Support',
+    'About'
+  ];
 
-.directive('ripple', function() {
-  var parent, ink, x, y, d;
-  return function($scope, $ele) {
-    $ele.on('click', function(e) {
-      parent = angular.element($ele.parent());
-      console.log($ele, parent);
-      if (parent.find('.ink').length === 0) {
-        parent.prepend('<span class="ink"></span>');
-      }
-
-      ink = parent.find('.ink');
-      console.log(ink);
-
-      if (!ink.height() && !ink.width()) {
-        d = Math.max(parent.outerWidth(), parent.outerHeight());
-        ink.css({height: d, width: d});
-      }
-
-      x = e.pageX - parent.offset().left - ink.width()/2;
-      y = e.pageY - parent.offset().top - ink.height()/2;
-
-      ink.animate({top: y+'px', left: x+'px', opacity: 0, transform: 'scale(2.5)'});
-
-    });
-  };
+  $scope.$on('nav:close', function(){
+    this.navOpen = false;
+  }.bind(this));
 })
 
 .run(function($ionicPlatform) {

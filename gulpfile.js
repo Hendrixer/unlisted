@@ -7,15 +7,16 @@ var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
 var stylus = require('gulp-stylus');
+var prefix = require('gulp-autoprefixer');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
-  stylus: ['./stylus/**/*.stly']
+  stylus: ['./stylus/**/*.styl']
 };
 
-gulp.task('default', ['sass', 'stylus']);
+gulp.task('default', ['sass', 'stylus', 'watch']);
 
-gulp.task('sass', function(done) {
+gulp.task('sass', function() {
   gulp.src('./scss/ionic.app.scss')
     .pipe(sass())
     .pipe(gulp.dest('./www/css/'))
@@ -23,14 +24,15 @@ gulp.task('sass', function(done) {
       keepSpecialComments: 0
     }))
     .pipe(rename({ extname: '.min.css' }))
-    .pipe(gulp.dest('./www/css/'))
-    .on('end', done);
+    .pipe(gulp.dest('./www/css/'));
 });
 
 gulp.task('stylus', function(done) {
-  return gulp.src(paths.stylus)
+  gulp.src('./stylus/main.styl')
     .pipe(stylus())
-    .pipe(gulp.dest('./www/css/'))
+    .on('error', gutil.log)
+    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7", { cascade: true }))
+    .pipe(gulp.dest('./www/css'))
     .pipe(minifyCss({
       keepSpecialComments: 0
     }))
