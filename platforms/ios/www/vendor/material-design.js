@@ -97,7 +97,7 @@ function MaterialEffects($animateSequence, $ripple, $rootElement, $position, $$r
       '-webkit-transform': translateString(startPos.left, startPos.top, 0) + ' scale(0.2)',
       opacity: 0
     });
-    
+
     // TODO once ngAnimateSequence bugs are fixed, this can be switched to use that
     $$rAF(function() {
       element.css({
@@ -303,6 +303,7 @@ function MaterialRippleDirective($materialEffects, $interpolate, $throttle) {
        */
       function localToCanvas(e)
       {
+        console.log('local canvas', e);
         var canvas = element[0].getBoundingClientRect();
 
         return  {
@@ -1101,7 +1102,7 @@ angular.module('material.components.dialog', ['material.services.popup'])
    *
    * @description
    *
-   * The $materialDialog service opens a dialog over top of the app. 
+   * The $materialDialog service opens a dialog over top of the app.
    *
    * See the overview page for an example.
    *
@@ -1113,11 +1114,11 @@ angular.module('material.components.dialog', ['material.services.popup'])
    * @returns {function} `hideDialog` - A function which, when called, will hide the dialog.
    *
    * @param {string=} templateUrl The url of a template that will be used as the content
-   * of the dialog. Restrictions: the template must have an outer `material-dialog` element. 
+   * of the dialog. Restrictions: the template must have an outer `material-dialog` element.
    * Inside, use an element with class `dialog-content` for the dialog's content, and use
    * an element with class `dialog-actions` for the dialog's actions.
    * @param {string=} template Same as templateUrl, except this is an actual template string.
-   * @param {DOMClickEvent=} targetEvent A click's event object. When passed in as an option, 
+   * @param {DOMClickEvent=} targetEvent A click's event object. When passed in as an option,
    * the location of the click will be used as the starting point for the opening animation
    * of the the dialog.
    * @param {boolean=} hasBackdrop Whether there should be an opaque backdrop behind the dialog.
@@ -1176,7 +1177,7 @@ function MaterialDialogService($timeout, $materialPopup, $rootElement, $material
     }, options || {});
 
     // Incase the user provides a raw dom element, always wrap it in jqLite
-    options.appendTo = angular.element(options.appendTo); 
+    options.appendTo = angular.element(options.appendTo);
 
     var backdropInstance;
 
@@ -1209,7 +1210,7 @@ function MaterialDialogService($timeout, $materialPopup, $rootElement, $material
         }
       });
 
-      var popInTarget = options.targetEvent && options.targetEvent.target && 
+      var popInTarget = options.targetEvent && options.targetEvent.target &&
         angular.element(options.targetEvent.target);
 
       $materialEffects.popIn(
@@ -1283,7 +1284,7 @@ function materialInputGroupDirective() {
       input = angular.element(input);
       var ngModelCtrl = input.controller('ngModel');
 
-      // When the input value changes, check if it "has" a value, and 
+      // When the input value changes, check if it "has" a value, and
       // set the appropriate class on the input group
       if (ngModelCtrl) {
         $scope.$watch(
@@ -1569,7 +1570,7 @@ function materialScrollHeader($materialContent, $timeout) {
         // Full height of the target
         height = target.offsetHeight,
 
-        // Condensed height is set through condensedHeight or defaults to 1/3 the 
+        // Condensed height is set through condensedHeight or defaults to 1/3 the
         // height of the target
         condensedHeight = $attr.condensedHeight || (height / 3),
 
@@ -1578,7 +1579,7 @@ function materialScrollHeader($materialContent, $timeout) {
 
         // Current "y" position of scroll
         y = 0,
-      
+
         // Store the last scroll top position
         prevScrollTop = 0;
 
@@ -1643,7 +1644,7 @@ angular.module('material.components.sidenav', [
       '$materialComponentRegistry',
     materialSidenavController ])
   .directive('materialSidenav', [ materialSidenavDirective ]);
-  
+
 /**
  * @ngdoc object
  * @name materialSidenavController
@@ -1652,7 +1653,7 @@ angular.module('material.components.sidenav', [
  * @description
  * The controller for materialSidenav components.
  */
-function materialSidenavController($scope, $element, $attrs, $timeout, 
+function materialSidenavController($scope, $element, $attrs, $timeout,
     $document, $materialSidenav, $materialComponentRegistry) {
 
   var self = this;
@@ -1672,6 +1673,7 @@ function materialSidenavController($scope, $element, $attrs, $timeout,
 
     $scope.$apply(function() {
       self.close();
+      $scope.$emit('nav:close');
       onClose();
     });
   };
@@ -2814,7 +2816,7 @@ function QpToastDirective() {
   return {
     restrict: 'E',
     transclude: true,
-    template: 
+    template:
       '<div class="toast-container" ng-transclude>' +
       '</div>'
   };
@@ -2835,7 +2837,7 @@ function QpToastService($timeout, $materialPopup) {
       duration: 3000,
       // [unimplemented] Whether to disable swiping
       swipeDisabled: false,
-      // Supports any combination of these class names: 'bottom top left right fit'. 
+      // Supports any combination of these class names: 'bottom top left right fit'.
       // Default: 'bottom left'
       position: 'bottom left',
 
@@ -3027,7 +3029,7 @@ function materialCompilerService($q, $http, $injector, $compile, $controller, $t
     * with the following properties:
     *
     *   - `{element}` â€“ `element` â€“ an uncompiled angular element compiled using the provided template.
-    *   
+    *
     *   - `{function(scope)}`  â€“ `link` â€“ A link function, which, when called, will compile
     *     the elmeent and instantiate options.controller.
     *
@@ -3055,7 +3057,7 @@ function materialCompilerService($q, $http, $injector, $compile, $controller, $t
     var locals = options.locals || {};
     var transformTemplate = options.transformTemplate || angular.identity;
 
-    // Take resolve values and invoke them.  
+    // Take resolve values and invoke them.
     // Resolves can either be a string (value: 'MyRegisteredAngularConst'),
     // or an invokable 'factory' of sorts: (value: function ValueGetter($dependency) {})
     angular.forEach(resolve, function(value, key) {
@@ -3366,7 +3368,7 @@ angular.module('material.services.throttle', [ 'ng' ])
    *   makeRipple();
    *
    */
-  .factory( "$throttle", ['$timeout', '$$q', '$log', function ($timeout, $$q, $log) {
+  .factory( "$throttle", ['$timeout', '$q', '$log', function ($timeout, $q, $log) {
 
       var STATE_READY= 0, STATE_START=1, STATE_THROTTLE=2, STATE_END=3;
 
@@ -3547,7 +3549,7 @@ angular.module('material.services.throttle', [ 'ng' ])
         function gotoState( nextState , targetFn  )
         {
 
-          var dfd = $$q.defer(),
+          var dfd = $q.defer(),
               hasFn = angular.isFunction(targetFn),
               goNext = hasFn && (targetFn.length < 1),
               fn = hasFn ? targetFn : resolved;
@@ -3593,7 +3595,7 @@ angular.module('material.services.throttle', [ 'ng' ])
        */
       function resolved(dfd)
       {
-        dfd = dfd || $$q.defer();
+        dfd = dfd || $q.defer();
         dfd.resolve.apply(null, arguments.length > 1 ? [].slice.call(arguments,1) : [ ]);
 
         return dfd.promise;

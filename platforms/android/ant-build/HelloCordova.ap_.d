@@ -44,6 +44,7 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/app.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/directives \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/main \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/services \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/sidemenu \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/directives/index.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/main/feed \
@@ -57,6 +58,8 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/main/profile/profile.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/main/reciepts/reciepts.html \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/main/reciepts/reciepts.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/services/index.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/services/mocks.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/sidemenu/sidemenu.html \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/app/sidemenu/sidemenu.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/css/ionic.app.css \
@@ -90,8 +93,10 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/collide \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ionic \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/jquery \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngCordova \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngFx \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/angular/angular-csp.css \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/angular/angular.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/angular/angular.min.js \
@@ -307,6 +312,15 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/jquery/src/var/strundefined.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/jquery/src/var/support.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/jquery/src/var/toString.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/bower.json \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/LICENSE.txt \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.compat.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.compat.min.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.min.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.underscore.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/lodash/dist/lodash.underscore.min.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngCordova/bower.json \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngCordova/config \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngCordova/demo \
@@ -479,6 +493,11 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngFx/LICENSE \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngFx/dist/ngFx.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/ngFx/dist/ngFx.min.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity/bower.json \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity/jquery.velocity.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity/jquery.velocity.min.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity/velocity.ui.js \
+/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/lib/velocity/velocity.ui.min.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/plugins/com.ionic.keyboard \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/plugins/org.apache.cordova.device \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/plugins/com.ionic.keyboard/www \
@@ -492,6 +511,4 @@
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/vendor/material-design.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/vendor/material-design.min.css \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/vendor/material-design.min.js \
-/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/vendor/waves.css \
-/Users/Hendrixer/Dev/bizz/unlisted/platforms/android/assets/www/vendor/waves.js \
 /Users/Hendrixer/Dev/bizz/unlisted/platforms/android/ant-build/AndroidManifest.xml \

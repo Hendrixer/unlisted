@@ -31,7 +31,7 @@ gulp.task('stylus', function(done) {
   gulp.src('./stylus/main.styl')
     .pipe(stylus())
     .on('error', gutil.log)
-    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7", { cascade: true }))
+    .pipe(prefix("last 1 version", "> 1%", "ie 8", "ie 7"))
     .pipe(gulp.dest('./www/css'))
     .pipe(minifyCss({
       keepSpecialComments: 0

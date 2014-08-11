@@ -3,26 +3,74 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'ngMaterial'])
+angular.module('unlisted', [
+  'ionic',
+  'ngMaterial',
+  'unlisted.main',
+  'ngFx',
+  'unlisted.directives',
+  'unlisted.services'
+])
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
-    .state('home', {
-      url: '/home',
-      templateUrl: 'home.html'
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'app/app.html'
     });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/app/main/feed');
 })
 
-.controller('main', function($scope, $timeout, $materialSidenav) {
+.controller('RootController', function($scope, $timeout, $materialSidenav, $state) {
+  $scope.nav = {};
   var leftNav;
   $timeout(function() {
-    leftNav = $materialSidenav('left');
-  });
+    leftNav = $materialSidenav($scope.nav.id);
+  }.bind(this), 1000);
 
-  $scope.toggleLeft = function() {
+  this.navOpen = false;
+  this.toggleLeft = function(swipe) {
+    if (swipe === 'right' && !this.navOpen) {
+      leftNav.toggle();
+      return this.navOpen = true;
+    }
+
+    if (swipe === 'left' && this.navOpen) {
+      leftNav.toggle();
+      this.navOpen = false;
+    }
+  };
+
+  this.theme = {
+
+  };
+
+  this.navHamburger = function() {
     leftNav.toggle();
+    this.navOpen = !this.navOpen;
+  };
+
+  this.navigationLinks = [
+    'profile',
+    'claimed',
+    'feed',
+    'support',
+    'about'
+  ];
+
+  $scope.$on('nav:close', function(){
+    this.navOpen = false;
+  }.bind(this));
+
+  this.goTo = function(where) {
+    this.toggleLeft('left');
+    var state = 'app.main.' + where;
+    if (state === $state.current.name) {
+      return;
+    }
+    $state.go(where);
   };
 })
 

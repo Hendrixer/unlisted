@@ -8,8 +8,8 @@ angular.module('unlisted', [
   'ngMaterial',
   'unlisted.main',
   'ngFx',
-  'unlisted.directives'
-
+  'unlisted.directives',
+  'unlisted.services'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -23,7 +23,7 @@ angular.module('unlisted', [
   $urlRouterProvider.otherwise('/app/main/feed');
 })
 
-.controller('RootController', function($scope, $timeout, $materialSidenav) {
+.controller('RootController', function($scope, $timeout, $materialSidenav, $state) {
   $scope.nav = {};
   var leftNav;
   $timeout(function() {
@@ -53,16 +53,27 @@ angular.module('unlisted', [
   };
 
   this.navigationLinks = [
-    'Profile',
-    'Claimed',
-    'Feed',
-    'Support',
-    'About'
+    'profile',
+    'claimed',
+    'feed',
+    'support',
+    'about'
   ];
 
   $scope.$on('nav:close', function(){
     this.navOpen = false;
   }.bind(this));
+
+  this.goTo = function(where) {
+    $timeout(function(){
+      this.toggleLeft('left');
+    }.bind(this), 300);
+    var state = 'app.main.' + where;
+    if (state === $state.current.name) {
+      return;
+    }
+    $state.go(where);
+  };
 })
 
 .run(function($ionicPlatform) {

@@ -6,6 +6,8 @@
     on-swipe-left="root.toggleLeft('left')"
     scrollbar-y="false"
     padding="false">
+
+  <!-- side menu start -->
     <material-sidenav
       class="material-sidenav-left material-whiteframe-z2"
       component-id="feed">
@@ -17,18 +19,26 @@
       </section>
 
       <ion-list>
-        <ion-item class="nav-item" ng-repeat="link in root.navigationLinks">
-          {{ link }}
+        <ion-item ripple class="nav-item" ng-repeat="link in root.navigationLinks" ng-click="root.goTo(link)">
+          <h2 >{{ link | uppercase }}</h2>
         </ion-item>
       </ion-list>
 
     </material-sidenav>
+  <!-- side menu end -->
 
+  <!-- darken overlay: happend when side nav is open -->
     <div ng-if="root.navOpen" class="nav-overlay fx-fade-overlay fx-speed-300"></div>
-    <section>
-      wassup
-    </section>
-  </ion-content>
+  <!-- darken overlay ends -->
 
+  <!-- feed content start -->
+    <section class="feed-container">
+      <div ripple color="ffffff"class="feed-hero feed-block">
+        <h1>{{ feed.hero.name }}</h1>
+      </div>
+      <div ripple color="ffffff"absolute="false" class="primary box"></div>
+    </section>
+  <!-- feed content end -->
+  </ion-content>
 
 </ion-view>

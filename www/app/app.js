@@ -8,8 +8,8 @@ angular.module('unlisted', [
   'ngMaterial',
   'unlisted.main',
   'ngFx',
-  'unlisted.directives'
-
+  'unlisted.directives',
+  'unlisted.services'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -65,7 +65,9 @@ angular.module('unlisted', [
   }.bind(this));
 
   this.goTo = function(where) {
-    this.toggleLeft('left');
+    $timeout(function(){
+      this.toggleLeft('left');
+    }.bind(this), 300);
     var state = 'app.main.' + where;
     if (state === $state.current.name) {
       return;

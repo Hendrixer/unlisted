@@ -1,0 +1,43 @@
+<ion-view title="Feed">
+
+  <!-- TODO: put these in an abstract parent state -->
+  <ion-content
+    on-swipe-right="root.toggleLeft('right')"
+    on-swipe-left="root.toggleLeft('left')"
+    scrollbar-y="false"
+    padding="false">
+
+  <!-- side menu start -->
+    <material-sidenav
+      class="material-sidenav-left material-whiteframe-z2"
+      component-id="feed">
+
+      <section class="nav-hero">
+        <div class="row">
+          <img class="col col-25 nav-pic" src="http://photos-f.ak.instagram.com/hphotos-ak-xfa1/10549606_332428306919949_666741532_n.jpg" alt="">
+        </div>
+      </section>
+
+      <ion-list>
+        <ion-item class="nav-item" ng-repeat="link in root.navigationLinks">
+          <h2 ng-click="root.goTo(link)" ui-sref-active="active-link">{{ link | uppercase }}</h2>
+        </ion-item>
+      </ion-list>
+
+    </material-sidenav>
+  <!-- side menu end -->
+
+  <!-- darken overlay: happend when side nav is open -->
+    <div ng-if="root.navOpen" class="nav-overlay fx-fade-overlay fx-speed-300"></div>
+  <!-- darken overlay ends -->
+
+  <!-- feed content start -->
+    <section class="feed-container">
+      <div style="background-image: url({{ feed.hero.logo }});"class="feed-hero feed-block">
+        <h1>{{ feed.hero.name }}</h1>
+      </div>
+    </section>
+  <!-- feed content end -->
+  </ion-content>
+
+</ion-view>

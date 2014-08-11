@@ -303,7 +303,6 @@ function MaterialRippleDirective($materialEffects, $interpolate, $throttle) {
        */
       function localToCanvas(e)
       {
-        console.log('local canvas', e);
         var canvas = element[0].getBoundingClientRect();
 
         return  {
@@ -1668,6 +1667,7 @@ function materialSidenavController($scope, $element, $attrs, $timeout,
         // Don't allow clicks originating in the sidenav to close it
         return true;
       }
+
       node = node.parentNode;
     }
 
